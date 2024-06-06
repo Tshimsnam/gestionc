@@ -9,8 +9,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Activite extends Model
 {
     use HasFactory;
+    protected $fillable = ['name', 'place', 'duree','date_debut'];
 
     public function candidats(){
-        return $this->belongsTo(Candidat::class);
+        return $this->hasMany(Candidat::class);
     }
 }

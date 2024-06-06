@@ -2,18 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Candidat extends Model
 {
     use HasFactory;
+    protected $guarded=[];
 
-    public function activites(){
-        return $this->hasMany(Activite::class);
+    public function activite() : BelongsTo{
+        return $this->belongsTo(Activite::class);
     }
 
-    public function stages(){
-        return $this->hasMany(Stage::class);
+    public function stage(){
+        return $this->belongsTo(Stage::class);
     }
 }

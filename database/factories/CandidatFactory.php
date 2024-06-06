@@ -27,8 +27,8 @@ class CandidatFactory extends Factory
             'e_mail'=>$this->faker->safeEmail(),
             'phone_number'=>$this->faker->phoneNumber(),
             'linkedin'=>$this->faker->sentence(15, true),
-            'activites_id'=>$this->faker->numberBetween(1, 20),
-            'stages_id'=>$this->faker->numberBetween(1, 20)
+            'activite_id'=>$this->faker->numberBetween(1, 20),
+            'stage_id'=>$this->faker->numberBetween(1, 20)
 
 
         ];

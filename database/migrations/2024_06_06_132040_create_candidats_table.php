@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Activite;
+use App\Models\Stage;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -24,8 +26,8 @@ return new class extends Migration
             $table->string('e_mail');
             $table->string('phone_number');
             $table->string('linkedin');
-            $table->foreignId('activites_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('stages_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignIdFor(Activite::class)->constrained();
+            $table->foreignIdFor(Stage::class)->constrained();
             $table->timestamps();
         });
     }
