@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Stage;
 use App\Models\Candidat;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Style\Color;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Style\Border;
 use App\Http\Requests\StoreCandidatRequest;
 use App\Http\Requests\UpdateCandidatRequest;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
 
 
 class CandidatController extends Controller
@@ -19,71 +23,128 @@ class CandidatController extends Controller
         $spreadsheet = new Spreadsheet();
         $worksheet = $spreadsheet->getActiveSheet();
 
+        $worksheet->mergeCells('A1:M1');
+        $worksheet->setCellValue('A1', 'Data');
+        $worksheet->getStyle('A1')
+        ->getFill()
+        ->setFillType(Fill::FILL_SOLID)
+        ->setStartColor(new Color('FFFFFF00'));
+    //pour l'allignement
+    $worksheet->getStyle('A1')
+        ->getAlignment()
+        ->setHorizontal(Alignment::HORIZONTAL_CENTER);
+
+        $worksheet->mergeCells('A2:M2');
+        $worksheet->setCellValue('A2', 'learner data');
+        $worksheet->getStyle('A2')
+        ->getFill()
+        ->setFillType(Fill::FILL_SOLID)
+        ->setStartColor(new Color('FF87CEEB'));
+    
+    $worksheet->getStyle('A2')
+        ->getAlignment()
+        ->setHorizontal(Alignment::HORIZONTAL_CENTER);
+
+
+// $worksheet est l'objet Worksheet dans lequel vous voulez définir la couleur
+$maxRows = 50; // Nombre maximum de lignes à colorer
+$startRow = 3; // Ligne de départ
+
+// Définir le style de la bordure
+$borderStyle = [
+    'borders' => [
+        'allBorders' => [
+            'borderStyle' => Border::BORDER_THIN,
+            'color' => ['argb' => Color::COLOR_BLACK],
+        ],
+    ],
+];
+
+for ($row = $startRow; $row <= $startRow + $maxRows - 1; $row++) {
+    $worksheet->getStyle('A' . $row)
+        ->getFill()
+        ->setFillType(Fill::FILL_SOLID)
+        ->getStartColor()
+        ->setARGB('FFFFE0');
+    
+}
+
+// Définir la couleur pour les lignes suivantes si nécessaire
+$lastRow = $worksheet->getHighestRow();
+for ($row = $startRow + $maxRows; $row <= $lastRow; $row++) {
+    $worksheet->getStyle('A' . $row)
+        ->getFill()
+        ->setFillType(Fill::FILL_SOLID)
+        ->getStartColor()
+        ->setARGB('FFFFE0');
+}
+    
+
         //on  defini les en-têtes de colonne
-        $worksheet->setCellValue('A1', 'Id')
-                    ->getStyle('A1')
+        $worksheet->setCellValue('A3', 'Id')
+                    ->getStyle('A3')
                     ->getFont()
-                    ->setSize(14)
+                    ->setSize(12)
                     ->setBold(true);
-        $worksheet->setCellValue('B1', 'name')
-                    ->getStyle('B1')
+        $worksheet->setCellValue('B3', 'name')
+                    ->getStyle('B3')
                     ->getFont()
-                    ->setSize(14)
+                    ->setSize(12)
                     ->setBold(true);
-        $worksheet->setCellValue('C1', 'last_name')
-                    ->getStyle('C1')
+        $worksheet->setCellValue('C3', 'last_name')
+                    ->getStyle('C3')
                     ->getFont()
-                    ->setSize(14)
+                    ->setSize(12)
                     ->setBold(true);
-        $worksheet->setCellValue('D1', 'gender')
-                    ->getStyle('D1')
+        $worksheet->setCellValue('D3', 'gender')
+                    ->getStyle('D3')
                     ->getFont()
-                    ->setSize(14)
+                    ->setSize(12)
                     ->setBold(true);    
-        $worksheet->setCellValue('E1', 'Years')
-                    ->getStyle('E1')
+        $worksheet->setCellValue('E3', 'Years')
+                    ->getStyle('E3')
                     ->getFont()
-                    ->setSize(14)
+                    ->setSize(12)
                     ->setBold(true);
-        $worksheet->setCellValue('F1', 'socio_professional')
-                    ->getStyle('F1')
+        $worksheet->setCellValue('F3', 'socio_professional')
+                    ->getStyle('F3')
                     ->getFont()
-                    ->setSize(14)
+                    ->setSize(12)
                     ->setBold(true);
-        $worksheet->setCellValue('G1', 'student_university')
-                    ->getStyle('G1')
+        $worksheet->setCellValue('G3', 'student_university')
+                    ->getStyle('G3')
                     ->getFont()
-                    ->setSize(14)
+                    ->setSize(12)
                     ->setBold(true);
-        $worksheet->setCellValue('H1', 'student_speciality')
-                    ->getStyle('H1')
+        $worksheet->setCellValue('H3', 'student_speciality')
+                    ->getStyle('H3')
                     ->getFont()
-                    ->setSize(14)
+                    ->setSize(12)
                     ->setBold(true);
-        $worksheet->setCellValue('I1', 'e_mail')
-                    ->getStyle('I1')
+        $worksheet->setCellValue('I3', 'e_mail')
+                    ->getStyle('I3')
                     ->getFont()
-                    ->setSize(14)
+                    ->setSize(12)
                     ->setBold(true);
-        $worksheet->setCellValue('J1', 'phone_number')
-                    ->getStyle('J1')
+        $worksheet->setCellValue('J3', 'phone_number')
+                    ->getStyle('J3')
                     ->getFont()
-                    ->setSize(14)
+                    ->setSize(12)
                     ->setBold(true);
-        $worksheet->setCellValue('K1', 'linkedin')
-                    ->getStyle('K1')
+        $worksheet->setCellValue('K3', 'linkedin')
+                    ->getStyle('K3')
                     ->getFont()
-                    ->setSize(14)
+                    ->setSize(12)
                     ->setBold(true);
-        $worksheet->setCellValue('L1', 'nome activités')
-                    ->getStyle('L1')
+        $worksheet->setCellValue('L3', 'nome activités')
+                    ->getStyle('L3')
                     ->getFont()
-                    ->setSize(14)
+                    ->setSize(12)
                     ->setBold(true);
 
 
         //Remplissage de données 
-        $row = 2;
+        $row = 4;
 
         foreach($candidats as $candidat){
             $worksheet->setCellValue('A'.$row, $candidat->id)
@@ -136,12 +197,12 @@ class CandidatController extends Controller
             $row++;
         } 
 
-        foreach ($worksheet->getColumnIterator() as $column) {
+        /*foreach ($worksheet->getColumnIterator() as $column) {
             $worksheet->getColumnDimension($column->getColumnIndex())->setAutoSize(true);
         }
         $worksheet->getStyle('A1:K1')->getFill()
         ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
-        ->getStartColor()->setARGB('0070C0');
+        ->getStartColor()->setARGB('0070C0');*/
         
   
 
