@@ -46,38 +46,29 @@ class CandidatController extends Controller
         ->setHorizontal(Alignment::HORIZONTAL_CENTER);
 
 
-// $worksheet est l'objet Worksheet dans lequel vous voulez définir la couleur
-$maxRows = 50; // Nombre maximum de lignes à colorer
-$startRow = 3; // Ligne de départ
-
 // Définir le style de la bordure
-$borderStyle = [
-    'borders' => [
-        'allBorders' => [
-            'borderStyle' => Border::BORDER_THIN,
-            'color' => ['argb' => Color::COLOR_BLACK],
-        ],
-    ],
-];
+funtion applyColorToColumn(Worksheet $worksheet, int $startRow, int $maxRows, string $columnLetter, string $color)
+{ //la couleur aux lignes spécifiques
 
-for ($row = $startRow; $row <= $startRow + $maxRows - 1; $row++) {
-    $worksheet->getStyle('A' . $row)
-        ->getFill()
+    for ($row = $startRow; $row<= $startRow + $maxRows -1; $row++){
+        $worksheet->getStyle($columnLetter . $row)->getFill()
         ->setFillType(Fill::FILL_SOLID)
-        ->getStartColor()
-        ->setARGB('FFFFE0');
-    
+        ->getStartColor()->setARGB();
+    }
+
+    //couleur pour les lignes suivante
+
+    $lastRow =$worksheet->getHighestColumn();
+    for($row = $startRow +$maxRows; $row <= $lastRow; $row++){
+        $worksheet->getStyle($columnletter . $row)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setARGB($color);
+    }
 }
+
+$worksheet=$spreadsheet->getActiveSheet();
+applyColorToColumn($worksheet, 3, 50, 'B', 'FFFFE0');
+
 
 // Définir la couleur pour les lignes suivantes si nécessaire
-$lastRow = $worksheet->getHighestRow();
-for ($row = $startRow + $maxRows; $row <= $lastRow; $row++) {
-    $worksheet->getStyle('A' . $row)
-        ->getFill()
-        ->setFillType(Fill::FILL_SOLID)
-        ->getStartColor()
-        ->setARGB('FFFFE0');
-}
     
 
         //on  defini les en-têtes de colonne
