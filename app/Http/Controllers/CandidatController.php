@@ -12,6 +12,7 @@ use PhpOffice\PhpSpreadsheet\Style\Border;
 use App\Http\Requests\StoreCandidatRequest;
 use App\Http\Requests\UpdateCandidatRequest;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 
 class CandidatController extends Controller
@@ -34,7 +35,7 @@ class CandidatController extends Controller
         ->getAlignment()
         ->setHorizontal(Alignment::HORIZONTAL_CENTER);
 
-        $worksheet->mergeCells('A2:M2');
+        $worksheet->mergeCells('A2:L2');
         $worksheet->setCellValue('A2', 'learner data');
         $worksheet->getStyle('A2')
         ->getFill()
@@ -46,26 +47,36 @@ class CandidatController extends Controller
         ->setHorizontal(Alignment::HORIZONTAL_CENTER);
 
 
-// Définir le style de la bordure
-funtion applyColorToColumn(Worksheet $worksheet, int $startRow, int $maxRows, string $columnLetter, string $color)
+// fonction pour les couleurs des colonnes
+function applyColorToColumn(Worksheet $worksheet, int $startRow, int $maxRows, string $columnLetter, string $color)
 { //la couleur aux lignes spécifiques
 
     for ($row = $startRow; $row<= $startRow + $maxRows -1; $row++){
         $worksheet->getStyle($columnLetter . $row)->getFill()
         ->setFillType(Fill::FILL_SOLID)
-        ->getStartColor()->setARGB();
+        ->getStartColor()->setARGB($color);
     }
 
     //couleur pour les lignes suivante
 
-    $lastRow =$worksheet->getHighestColumn();
+    $lastRow =$worksheet->getHighestRow();
     for($row = $startRow +$maxRows; $row <= $lastRow; $row++){
-        $worksheet->getStyle($columnletter . $row)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setARGB($color);
+        $worksheet->getStyle($columnLetter . $row)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setARGB($color);
     }
 }
 
+//
 $worksheet=$spreadsheet->getActiveSheet();
-applyColorToColumn($worksheet, 3, 50, 'B', 'FFFFE0');
+applyColorToColumn($worksheet, 4, 50, 'D', 'FFFFE0');
+
+$worksheet=$spreadsheet->getActiveSheet();
+applyColorToColumn($worksheet, 4, 50, 'E', 'FFFFE0');
+
+$worksheet=$spreadsheet->getActiveSheet();
+applyColorToColumn($worksheet, 4, 50, 'F', 'FFFFE0');
+
+$worksheet=$spreadsheet->getActiveSheet();
+applyColorToColumn($worksheet, 1, 50, 'M', 'FF808080');
 
 
 // Définir la couleur pour les lignes suivantes si nécessaire
@@ -75,63 +86,91 @@ applyColorToColumn($worksheet, 3, 50, 'B', 'FFFFE0');
         $worksheet->setCellValue('A3', 'Id')
                     ->getStyle('A3')
                     ->getFont()
-                    ->setSize(12)
+                    ->setSize(10)
                     ->setBold(true);
         $worksheet->setCellValue('B3', 'name')
                     ->getStyle('B3')
                     ->getFont()
-                    ->setSize(12)
+                    ->setSize(10)
                     ->setBold(true);
         $worksheet->setCellValue('C3', 'last_name')
                     ->getStyle('C3')
                     ->getFont()
-                    ->setSize(12)
+                    ->setSize(10)
                     ->setBold(true);
         $worksheet->setCellValue('D3', 'gender')
                     ->getStyle('D3')
                     ->getFont()
-                    ->setSize(12)
+                    ->setSize(10)
                     ->setBold(true);    
         $worksheet->setCellValue('E3', 'Years')
                     ->getStyle('E3')
                     ->getFont()
-                    ->setSize(12)
+                    ->setSize(10)
                     ->setBold(true);
         $worksheet->setCellValue('F3', 'socio_professional')
                     ->getStyle('F3')
                     ->getFont()
-                    ->setSize(12)
+                    ->setSize(10)
                     ->setBold(true);
         $worksheet->setCellValue('G3', 'student_university')
                     ->getStyle('G3')
                     ->getFont()
-                    ->setSize(12)
+                    ->setSize(10)
                     ->setBold(true);
         $worksheet->setCellValue('H3', 'student_speciality')
                     ->getStyle('H3')
                     ->getFont()
-                    ->setSize(12)
+                    ->setSize(10)
                     ->setBold(true);
         $worksheet->setCellValue('I3', 'e_mail')
                     ->getStyle('I3')
                     ->getFont()
-                    ->setSize(12)
+                    ->setSize(10)
                     ->setBold(true);
         $worksheet->setCellValue('J3', 'phone_number')
                     ->getStyle('J3')
                     ->getFont()
-                    ->setSize(12)
+                    ->setSize(10)
                     ->setBold(true);
         $worksheet->setCellValue('K3', 'linkedin')
                     ->getStyle('K3')
                     ->getFont()
-                    ->setSize(12)
+                    ->setSize(10)
                     ->setBold(true);
         $worksheet->setCellValue('L3', 'nome activités')
                     ->getStyle('L3')
                     ->getFont()
-                    ->setSize(12)
+                    ->setSize(10)
                     ->setBold(true);
+
+        // Centrer les en-têtes
+$worksheet->getStyle('A3:L3')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+
+// Descendre les titres longs sur plusieurs lignes
+$worksheet->getCell('F3')->getStyle()->getAlignment()->setWrapText(true);
+$worksheet->getCell('G3')->getStyle()->getAlignment()->setWrapText(true);
+$worksheet->getCell('H3')->getStyle()->getAlignment()->setWrapText(true);
+
+        
+        //la taille des lignes des entetes
+
+        $worksheet->getRowDimension(3)->setRowHeight(25);
+        //longueur de lignes
+        $startColumn = 'A'; // Première colonne à modifier
+        $endColumn = 'L'; // Dernière colonne à modifier
+        $newColumnWidth = 18; // Nouvelle largeur de colonne en points
+
+for ($column = $startColumn; $column <= $endColumn; $column++) {
+    $worksheet->getColumnDimension($column)->setWidth($newColumnWidth);
+}
+
+//ligne de sepaaration
+$columnLetter = 'M'; // Colonne à modifier
+$newColumnWidth = 4; // Nouvelle largeur de colonne en points
+
+// Définir la largeur de la colonne A
+$worksheet->getColumnDimension($columnLetter)->setWidth($newColumnWidth);
 
 
         //Remplissage de données 
