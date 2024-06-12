@@ -25,23 +25,23 @@ class CandidatController extends Controller
         $worksheet = $spreadsheet->getActiveSheet();
 
         //premiere section du tableau
-        $worksheet->mergeCells('A1:M1');
+        $worksheet->mergeCells('A1:K1');
         $worksheet->setCellValue('A1', 'Data');
         $worksheet->getStyle('A1')
         ->getFill()
         ->setFillType(Fill::FILL_SOLID)
-        ->setStartColor(new Color('FFFFFF00'));
+        ->setStartColor(new Color('ffd966'));
     //pour l'allignement
     $worksheet->getStyle('A1')
         ->getAlignment()
         ->setHorizontal(Alignment::HORIZONTAL_CENTER);
 
-        $worksheet->mergeCells('A2:L2');
+        $worksheet->mergeCells('A2:J2');
         $worksheet->setCellValue('A2', 'learner data');
         $worksheet->getStyle('A2')
         ->getFill()
         ->setFillType(Fill::FILL_SOLID)
-        ->setStartColor(new Color('FF87CEEB'));
+        ->setStartColor(new Color('ddebf7'));
     
     $worksheet->getStyle('A2')
         ->getAlignment()
@@ -68,102 +68,96 @@ function applyColorToColumn(Worksheet $worksheet, int $startRow, int $maxRows, s
 
 //Colonne colorer
 $worksheet=$spreadsheet->getActiveSheet();
-applyColorToColumn($worksheet, 4, 50, 'D', 'FFFFE0');
+applyColorToColumn($worksheet, 4, 50, 'C', 'fff2cc');
 
 $worksheet=$spreadsheet->getActiveSheet();
-applyColorToColumn($worksheet, 4, 50, 'E', 'FFFFE0');
+applyColorToColumn($worksheet, 4, 50, 'D', 'fff2cc');
 
 $worksheet=$spreadsheet->getActiveSheet();
-applyColorToColumn($worksheet, 4, 50, 'F', 'FFFFE0');
+applyColorToColumn($worksheet, 4, 50, 'E', 'fff2cc');
 
 $worksheet=$spreadsheet->getActiveSheet();
-applyColorToColumn($worksheet, 4, 50, 'N', 'FFFFE0' );
+applyColorToColumn($worksheet, 4, 50, 'L', 'fff2cc' );
 
 $worksheet=$spreadsheet->getActiveSheet();
-applyColorToColumn($worksheet, 4, 50, 'S', 'FFFFE0');
+applyColorToColumn($worksheet, 4, 50, 'M', 'fff2cc');
 
 $worksheet=$spreadsheet->getActiveSheet();
-applyColorToColumn($worksheet, 4, 50, 'Z', 'FFFFE0');
+applyColorToColumn($worksheet, 4, 50, 'Q', 'fff2cc');
 
 $worksheet=$spreadsheet->getActiveSheet();
-applyColorToColumn($worksheet, 4, 50, 'AA', 'FFFFE0');
+applyColorToColumn($worksheet, 4, 50, 'X', 'fff2cc');
 
 $worksheet=$spreadsheet->getActiveSheet();
-applyColorToColumn($worksheet, 4, 50, 'AF', 'FFFFE0');
+applyColorToColumn($worksheet, 4, 50, 'Y', 'fff2cc');
+
+$worksheet=$spreadsheet->getActiveSheet();
+applyColorToColumn($worksheet, 4, 50, 'AD', 'fff2cc');
+
 
 //colonne separateur de section
 
 $worksheet=$spreadsheet->getActiveSheet();
-applyColorToColumn($worksheet, 1, 50, 'M', 'FF808080');
+applyColorToColumn($worksheet, 1, 50, 'K', 'aeaaaa');
 
 $worksheet=$spreadsheet->getActiveSheet();
-applyColorToColumn($worksheet, 1, 50, 'R', 'FF808080');
+applyColorToColumn($worksheet, 1, 50, 'P', 'aeaaaa');
 
 $worksheet=$spreadsheet->getActiveSheet(); 
-applyColorToColumn($worksheet, 1, 50, 'Y', 'FF808080');
+applyColorToColumn($worksheet, 1, 50, 'W', 'aeaaaa');
 
 $worksheet=$spreadsheet->getActiveSheet();
-applyColorToColumn($worksheet, 1, 50, 'AD', 'FF808080');
+applyColorToColumn($worksheet, 1, 50, 'AB', 'aeaaaa');
 
     
-        //on  defini les en-têtes de colonne
-        $worksheet->setCellValue('A3', 'Id')
+        //on  defini les en-têtes de colonne        
+        $worksheet->setCellValue('A3', 'name')
                     ->getStyle('A3')
                     ->getFont()
                     ->setSize(10)
-                    ->setBold(true);        
-        $worksheet->setCellValue('B3', 'name')
+                    ->setBold(true);
+        $worksheet->setCellValue('B3', 'last_name')
                     ->getStyle('B3')
                     ->getFont()
                     ->setSize(10)
                     ->setBold(true);
-        $worksheet->setCellValue('C3', 'last_name')
+        $worksheet->setCellValue('C3', 'gender')
                     ->getStyle('C3')
                     ->getFont()
                     ->setSize(10)
-                    ->setBold(true);
-        $worksheet->setCellValue('D3', 'gender')
+                    ->setBold(true);    
+        $worksheet->setCellValue('D3', 'Age')
                     ->getStyle('D3')
                     ->getFont()
                     ->setSize(10)
-                    ->setBold(true);    
-        $worksheet->setCellValue('E3', 'Years')
+                    ->setBold(true);
+        $worksheet->setCellValue('E3', 'socio_professional')
                     ->getStyle('E3')
                     ->getFont()
                     ->setSize(10)
                     ->setBold(true);
-        $worksheet->setCellValue('F3', 'socio_professional')
+        $worksheet->setCellValue('F3', 'if student_university')
                     ->getStyle('F3')
                     ->getFont()
                     ->setSize(10)
                     ->setBold(true);
-        $worksheet->setCellValue('G3', 'student_university')
+        $worksheet->setCellValue('G3', 'if student_speciality')
                     ->getStyle('G3')
                     ->getFont()
                     ->setSize(10)
                     ->setBold(true);
-        $worksheet->setCellValue('H3', 'student_speciality')
+        $worksheet->setCellValue('H3', 'e_mail')
                     ->getStyle('H3')
                     ->getFont()
                     ->setSize(10)
                     ->setBold(true);
-        $worksheet->setCellValue('I3', 'e_mail')
+        $worksheet->setCellValue('I3', 'phone_number')
                     ->getStyle('I3')
                     ->getFont()
                     ->setSize(10)
                     ->setBold(true);
-        $worksheet->setCellValue('J3', 'phone_number')
+        $worksheet->setCellValue('J3', 'linkedin')
                     ->getStyle('J3')
-                    ->getFont()
-                    ->setSize(10)
-                    ->setBold(true);
-        $worksheet->setCellValue('K3', 'linkedin')
-                    ->getStyle('K3')
-                    ->getFont()
-                    ->setSize(10)
-                    ->setBold(true);
-        $worksheet->setCellValue('L3', 'nome activités')
-                    ->getStyle('L3')
                     ->getFont()
                     ->setSize(10)
                     ->setBold(true);
@@ -172,19 +166,19 @@ applyColorToColumn($worksheet, 1, 50, 'AD', 'FF808080');
 $worksheet->getStyle('A3:AH3')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
 // Descendre les titres longs sur plusieurs lignes
+$worksheet->getCell('E3')->getStyle()->getAlignment()->setWrapText(true);
 $worksheet->getCell('F3')->getStyle()->getAlignment()->setWrapText(true);
 $worksheet->getCell('G3')->getStyle()->getAlignment()->setWrapText(true);
-$worksheet->getCell('H3')->getStyle()->getAlignment()->setWrapText(true);
+$worksheet->getCell('N3')->getStyle()->getAlignment()->setWrapText(true);
 $worksheet->getCell('O3')->getStyle()->getAlignment()->setWrapText(true);
-$worksheet->getCell('P3')->getStyle()->getAlignment()->setWrapText(true);
-$worksheet->getCell('Q3')->getStyle()->getAlignment()->setWrapText(true);
 $worksheet->getCell('R3')->getStyle()->getAlignment()->setWrapText(true);
 $worksheet->getCell('S3')->getStyle()->getAlignment()->setWrapText(true);
 $worksheet->getCell('T3')->getStyle()->getAlignment()->setWrapText(true);
 $worksheet->getCell('U3')->getStyle()->getAlignment()->setWrapText(true);
 $worksheet->getCell('V3')->getStyle()->getAlignment()->setWrapText(true);
-$worksheet->getCell('W3')->getStyle()->getAlignment()->setWrapText(true);
-$worksheet->getCell('X3')->getStyle()->getAlignment()->setWrapText(true);
+$worksheet->getCell('Z3')->getStyle()->getAlignment()->setWrapText(true);
+$worksheet->getCell('AA3')->getStyle()->getAlignment()->setWrapText(true);
+$worksheet->getCell('AC3')->getStyle()->getAlignment()->setWrapText(true);
 $worksheet->getCell('AB3')->getStyle()->getAlignment()->setWrapText(true);
 $worksheet->getCell('AC3')->getStyle()->getAlignment()->setWrapText(true);
 
@@ -195,7 +189,7 @@ $worksheet->getCell('AC3')->getStyle()->getAlignment()->setWrapText(true);
         $worksheet->getRowDimension(3)->setRowHeight(25);
         //longueur des lignes
         $startColumn = 'A'; // Première colonne à modifier
-        $endColumn = 'AH'; // Dernière colonne à modifier
+        $endColumn = 'AF'; // Dernière colonne à modifier
         $newColumnWidth = 25; // Nouvelle largeur de colonne en points
 
 for ($column = $startColumn; $column <= $endColumn; $column++) {
@@ -203,22 +197,22 @@ for ($column = $startColumn; $column <= $endColumn; $column++) {
 }
 
 //ligne de separation et taille
-$columnLetter = 'M'; // Colonne à modifier
-$newColumnWidth = 4; // Nouvelle largeur de colonne en points
+$columnLetter = 'K'; // Colonne à modifier
+$newColumnWidth = 3; // Nouvelle largeur de colonne en points
 
 $worksheet->getColumnDimension($columnLetter)->setWidth($newColumnWidth);
 
-$columnLetter = 'R';
-$newColumnWidth = 4;
+$columnLetter = 'P';
+$newColumnWidth = 3;
 
 $worksheet->getColumnDimension($columnLetter)->setWidth($newColumnWidth);
 
-$columnLetter = 'Y';
-$newColumnWidth = 4;
+$columnLetter = 'W';
+$newColumnWidth = 3;
 $worksheet->getColumnDimension($columnLetter)->setWidth($newColumnWidth);
 
-$columnLetter = 'AD';
-$newColumnWidth = 4;
+$columnLetter = 'AB';
+$newColumnWidth = 3;
 $worksheet->getColumnDimension($columnLetter)->setWidth($newColumnWidth);   
 
 
@@ -226,101 +220,97 @@ $worksheet->getColumnDimension($columnLetter)->setWidth($newColumnWidth);
         $row = 4;
 
         foreach($candidats as $candidat){
-            $worksheet->setCellValue('A'.$row, $candidat->id)
+            $worksheet->setCellValue('A'.$row, $candidat->name)
                         ->getStyle('A'.$row)
                         ->getAlignment()
                         ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-            $worksheet->setCellValue('B'.$row, $candidat->name)
+            $worksheet->setCellValue('B'.$row, $candidat->last_name)
                         ->getStyle('B'.$row)
                         ->getAlignment()
                         ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-            $worksheet->setCellValue('C'.$row, $candidat->last_name)
+            $worksheet->setCellValue('C'.$row, $candidat->gender)
                         ->getStyle('C'.$row)
                         ->getAlignment()
                         ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-            $worksheet->setCellValue('D'.$row, $candidat->gender)
+            $worksheet->setCellValue('D'.$row, $candidat->years)
                         ->getStyle('D'.$row)
                         ->getAlignment()
                         ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-            $worksheet->setCellValue('E'.$row, $candidat->years)
+            $worksheet->setCellValue('E'.$row, $candidat->socio_professional)
                         ->getStyle('E'.$row)
                         ->getAlignment()
                         ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-            $worksheet->setCellValue('F'.$row, $candidat->socio_professional)
+            $worksheet->setCellValue('F'.$row, $candidat->student_university)
                         ->getStyle('F'.$row)
                         ->getAlignment()
                         ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-            $worksheet->setCellValue('G'.$row, $candidat->student_university)
+            $worksheet->setCellValue('G'.$row, $candidat->student_speciality)
                         ->getStyle('G'.$row)
                         ->getAlignment()
                         ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-            $worksheet->setCellValue('H'.$row, $candidat->student_speciality)
+            $worksheet->setCellValue('H'.$row, $candidat->e_mail)
                         ->getStyle('H'.$row)
                         ->getAlignment()
                         ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-            $worksheet->setCellValue('I'.$row, $candidat->e_mail)
+            $worksheet->setCellValue('I'.$row, $candidat->phone_number)
                         ->getStyle('I'.$row)
                         ->getAlignment()
                         ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-            $worksheet->setCellValue('J'.$row, $candidat->phone_number)
+            $worksheet->setCellValue('J'.$row, $candidat->linkedin)
                         ->getStyle('J'.$row)
                         ->getAlignment()
                         ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-            $worksheet->setCellValue('K'.$row, $candidat->linkedin)
-                        ->getStyle('K'.$row)
-                        ->getAlignment()
-                        ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-            $worksheet->setCellValue('L'.$row, $candidat->activite->name);
+            //$worksheet->setCellValue('L'.$row, $candidat->activite->name);
 
-                        $worksheet->getRowDimension($row)->setRowHeight(-1);
+                        //$worksheet->getRowDimension($row)->setRowHeight(-1);
             $row++;
         } 
 
 
         //Deuxieme section du tableau
 
-        $worksheet->mergeCells('N1:AD1');
+        $worksheet->mergeCells('L1:AB1');
         $worksheet->setCellValue('N1', 'Participation in : Training/Internship/Event');
-        $worksheet->getStyle('N1')
+        $worksheet->getStyle('L1')
                     ->getFill()
                     ->setFillType(FILL::FILL_SOLID)
-                    ->setStartColor(new Color('FFF80F00'));
+                    ->setStartColor(new Color('f4b084'));
 
         //allignement de mergecellule
 
-        $worksheet->getStyle('N1')
+        $worksheet->getStyle('L1')
                     ->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_CENTER);
 
         //sous section
-        $worksheet->mergeCells('N2:Q2');
-        $worksheet->setCellValue('N2', 'To be specified if Training');
-        $worksheet->getStyle('N2')
+        $worksheet->mergeCells('L2:O2');
+        $worksheet->setCellValue('L2', 'To be specified if Training');
+        $worksheet->getStyle('L2')
                     ->getFill()
                     ->setFillType(FILL::FILL_SOLID)
-                    ->setStartColor(new Color('FFCC9966'));
+                    ->setStartColor(new Color('c6e0b4'));
 
-        $worksheet->getStyle('N2')
+        $worksheet->getStyle('L2')
                     ->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_CENTER);
 
-        $worksheet->setCellValue('N3', 'Place')
+        $worksheet->setCellValue('L3', 'Place')
+                    ->getStyle('L3')
+                    ->getFont()
+                    ->setSize(10)
+                    ->setBold(true);
+        $worksheet->setCellValue('M3', 'Training Date')
+                    ->getStyle('M3')
+                    ->getFont()
+                    ->setSize(10)
+                    ->setBold(true);
+        $worksheet->setCellValue('N3', 'Training Duration')
                     ->getStyle('N3')
                     ->getFont()
                     ->setSize(10)
                     ->setBold(true);
-        $worksheet->setCellValue('O3', 'Training Date')
+        $worksheet->setCellValue('O3', 'Name of Training Conducted')
                     ->getStyle('O3')
-                    ->getFont()
-                    ->setSize(10)
-                    ->setBold(true);
-        $worksheet->setCellValue('P3', 'Training Duration')
-                    ->getStyle('P3')
-                    ->getFont()
-                    ->setSize(10)
-                    ->setBold(true);
-        $worksheet->setCellValue('Q3', 'Name of Training Conducted')
-                    ->getStyle('Q3')
                     ->getFont()
                     ->setSize(10)
                     ->setBold(true);
@@ -331,44 +321,44 @@ $worksheet->getColumnDimension($columnLetter)->setWidth($newColumnWidth);
 
           //3ème section du tableau
 
-        $worksheet->mergeCells('S2:X2');
-        $worksheet->setCellValue('S2', 'To be specified if internship');
-        $worksheet->getStyle('S2')
+        $worksheet->mergeCells('Q2:V2');
+        $worksheet->setCellValue('Q2', 'To be specified if internship');
+        $worksheet->getStyle('Q2')
                     ->getFill()
                     ->setFillType(FILL::FILL_SOLID)
-                    ->setStartColor(new Color('FFDD8822'));
+                    ->setStartColor(new Color('bdd7ee'));
   
-        $worksheet->getStyle('S2')
+        $worksheet->getStyle('Q2')
                     ->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_CENTER);
 
-        $worksheet->setCellValue('S3', 'Place')
+        $worksheet->setCellValue('Q3', 'Place')
+                    ->getStyle('Q3')
+                    ->getFont()
+                    ->setSize(10)
+                    ->setBold(true);
+        $worksheet->setCellValue('R3', 'Internship Start date')
+                    ->getStyle('R3')
+                    ->getFont()
+                    ->setSize(10)
+                    ->setBold(true);
+        $worksheet->setCellValue('S3', 'Internship end date')
                     ->getStyle('S3')
                     ->getFont()
                     ->setSize(10)
                     ->setBold(true);
-        $worksheet->setCellValue('T3', 'Internship Start date')
+        $worksheet->setCellValue('T3', 'Internship duration (number of days')
                     ->getStyle('T3')
                     ->getFont()
                     ->setSize(10)
                     ->setBold(true);
-        $worksheet->setCellValue('U3', 'Internship end date')
+        $worksheet->setCellValue('U3', 'Intership Name')
                     ->getStyle('U3')
                     ->getFont()
                     ->setSize(10)
                     ->setBold(true);
-        $worksheet->setCellValue('V3', 'Internship duration (number of days')
+        $worksheet->setCellValue('V3', 'Project/Solutions developed')
                     ->getStyle('V3')
-                    ->getFont()
-                    ->setSize(10)
-                    ->setBold(true);
-        $worksheet->setCellValue('W3', 'Intership Name')
-                    ->getStyle('W3')
-                    ->getFont()
-                    ->setSize(10)
-                    ->setBold(true);
-        $worksheet->setCellValue('X3', 'Project/Solutions developed')
-                    ->getStyle('X3')
                     ->getFont()
                     ->setSize(10)
                     ->setBold(true);
@@ -380,34 +370,34 @@ $worksheet->getColumnDimension($columnLetter)->setWidth($newColumnWidth);
 
 
         //4ème section du tableau
-        $worksheet->mergeCells('Z2:AC2');
-        $worksheet->setCellValue('Z2', 'To be specified if Event');
-        $worksheet->getStyle('Z2')
+        $worksheet->mergeCells('X2:AA2');
+        $worksheet->setCellValue('X2', 'To be specified if Event');
+        $worksheet->getStyle('X2')
                     ->getFill()
                     ->setFillType(FILL::FILL_SOLID)
-                    ->setStartColor(new Color('FFFFC0CB'));
+                    ->setStartColor(new Color('ffd5f7'));
         
-        $worksheet->getStyle('Z2')
+        $worksheet->getStyle('X2')
                     ->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_CENTER);
         
-        $worksheet->setCellValue('Z3', 'Place')
+        $worksheet->setCellValue('X3', 'Place')
+                    ->getStyle('X3')
+                    ->getFont()
+                    ->setSize(10)
+                    ->setBold(true);
+        $worksheet->setCellValue('Y3', 'Event date')
+                    ->getStyle('Y3')
+                    ->getFont()
+                    ->setSize(10)
+                    ->setBold(true);
+        $worksheet->setCellValue('Z3', 'Event duration(number od days)')
                     ->getStyle('Z3')
                     ->getFont()
                     ->setSize(10)
                     ->setBold(true);
-        $worksheet->setCellValue('AA3', 'Event date')
+        $worksheet->setCellValue('AA3', 'Name of the Event')
                     ->getStyle('AA3')
-                    ->getFont()
-                    ->setSize(10)
-                    ->setBold(true);
-        $worksheet->setCellValue('AB3', 'Event duration(number od days)')
-                    ->getStyle('AB3')
-                    ->getFont()
-                    ->setSize(10)
-                    ->setBold(true);
-        $worksheet->setCellValue('AC3', 'Name of the Event')
-                    ->getStyle('AC3')
                     ->getFont()
                     ->setSize(10)
                     ->setBold(true);
@@ -416,56 +406,56 @@ $worksheet->getColumnDimension($columnLetter)->setWidth($newColumnWidth);
 
 
 
-        //4ème section du tableau
+        //5ème section du tableau
 
-        $worksheet->mergeCells('AE1:AG1');
-        $worksheet->setCellValue('AE1', 'Jobs Created');
-        $worksheet->getStyle('AE1')
+        $worksheet->mergeCells('AC1:AE1');
+        $worksheet->setCellValue('AC1', 'Jobs Created');
+        $worksheet->getStyle('AC1')
                     ->getFill()
                     ->setFillType(FILL::FILL_SOLID)
-                    ->setStartColor(new Color('FF00FF00'));
+                    ->setStartColor(new Color('a9d08e'));
 
-        $worksheet->getStyle('AE1')
+        $worksheet->getStyle('AC1')
                     ->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_CENTER);
 
         // Élargir la largeur des colonnes de AE1 à AG1
-        $startColumn = 'AE';
-        $endColumn = 'AG';
+        $startColumn = 'AC';
+        $endColumn = 'AE';
         $columnWidth = 15; // Définissez la largeur souhaitée en points
         for ($column = $startColumn; $column <= $endColumn; $column++) {
             $worksheet->getColumnDimension($column)->setWidth($columnWidth);
         }
         
 
-        $worksheet->mergeCells('AE2:AG2');
-        $worksheet->setCellValue('AE2', 'Employement of beneficiaires after ODC');
-        $worksheet->getStyle('AE2')
+        $worksheet->mergeCells('AC2:AE2');
+        $worksheet->setCellValue('AC2', 'Employement of beneficiaires after ODC');
+        $worksheet->getStyle('AC2')
                     ->getFill()
                     ->setFillType(FILL::FILL_SOLID)
-                                ->setStartColor(new Color('FFB0E0E6'));
+                                ->setStartColor(new Color('ddebf7'));
 
-        $worksheet->getStyle('AE2')
+        $worksheet->getStyle('AC2')
                     ->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_CENTER);
 
-        $worksheet->setCellValue('AE3', 'Company Name')
+        $worksheet->setCellValue('AC3', 'Company Name')
+                    ->getStyle('AC3')
+                    ->getFont()
+                    ->setSize(10)
+                    ->setBold(true);
+        $worksheet->setCellValue('AD3', 'Contract type')
+                    ->getStyle('AD3')
+                    ->getFont()
+                    ->setSize(10)
+                    ->setBold(true);
+        $worksheet->setCellValue('AE3', 'Job Position')
                     ->getStyle('AE3')
                     ->getFont()
                     ->setSize(10)
                     ->setBold(true);
-        $worksheet->setCellValue('AF3', 'Contract type')
+        $worksheet->setCellValue('AF3', 'Comments')
                     ->getStyle('AF3')
-                    ->getFont()
-                    ->setSize(10)
-                    ->setBold(true);
-        $worksheet->setCellValue('AG3', 'Job Position')
-                    ->getStyle('AG3')
-                    ->getFont()
-                    ->setSize(10)
-                    ->setBold(true);
-        $worksheet->setCellValue('AH3', 'Comments')
-                    ->getStyle('AH3')
                     ->getFont()
                     ->setSize(10)
                     ->setBold(true);
